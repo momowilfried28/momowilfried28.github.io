@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kouame Kouame | Développeur web junior</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f6fb;--surface:#fff;--ink:#101828;--muted:#53607a;--line:#dde3f0;
+  --brand:#2f5bff;--brand-ink:#fff;--mint:#0f9d7a;--tag:#e6ecff;--tag-ink:#1d3bb8;--hero-a:#dfe7ff;--hero-b:#e3f7ef;
+  color-scheme:light;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0c111d;--surface:#151c2c;--ink:#eef2fb;--muted:#9aa7c2;--line:#26314a;
+    --brand:#6f8cff;--brand-ink:#0c111d;--mint:#3ddbb0;--tag:#1f2b4d;--tag-ink:#b9c7ff;--hero-a:#16224a;--hero-b:#0e2a26;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0c111d;--surface:#151c2c;--ink:#eef2fb;--muted:#9aa7c2;--line:#26314a;
+  --brand:#6f8cff;--brand-ink:#0c111d;--mint:#3ddbb0;--tag:#1f2b4d;--tag-ink:#b9c7ff;--hero-a:#16224a;--hero-b:#0e2a26;color-scheme:dark;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:1.05rem}
+h1,h2,h3{font-family:'Bricolage Grotesque','DM Sans',system-ui,sans-serif;line-height:1.1;letter-spacing:-.02em}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px;border-radius:6px}
+
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;justify-content:space-between;align-items:center;padding:14px 6%;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav b{font-family:'Bricolage Grotesque',sans-serif;font-size:1.15rem}
+nav ul{display:flex;gap:22px;list-style:none;align-items:center}
+nav a{text-decoration:none;font-weight:500;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+#theme{background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;width:38px;height:38px;cursor:pointer;font-size:1rem}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 6%}
+.hero{background:radial-gradient(900px 400px at 85% 0,var(--hero-a),transparent 70%),radial-gradient(700px 360px at 0 100%,var(--hero-b),transparent 70%);padding:90px 0 80px}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center}
+.status{display:inline-flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);padding:7px 16px;border-radius:999px;font-size:.92rem;font-weight:500;margin-bottom:26px}
+.status i{width:9px;height:9px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 var(--mint);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.hero h1{font-size:clamp(2.8rem,7vw,5rem);font-weight:800}
+.hero h1 span{color:var(--brand)}
+.hero p.lead{margin:22px 0 32px;color:var(--muted);max-width:52ch;font-size:1.15rem}
+.btn{display:inline-block;text-decoration:none;font-weight:700;padding:14px 26px;border-radius:12px;margin:0 10px 10px 0;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-main{background:var(--brand);color:var(--brand-ink)}
+.btn-ghost{border:1.5px solid var(--line);background:var(--surface)}
+
+.win{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px -20px rgba(30,50,120,.35);overflow:hidden;transform:rotate(2deg)}
+.win .bar{display:flex;gap:7px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.win .bar i{width:11px;height:11px;border-radius:50%;background:var(--line)}
+.win .bar em{margin-left:10px;font-size:.78rem;color:var(--muted);font-style:normal}
+.win .body{padding:22px}
+.win .l{height:11px;border-radius:6px;background:var(--line);margin-bottom:12px}
+.win .l.b{background:var(--brand);width:55%;height:16px}
+.win .row{display:flex;gap:12px;margin-top:18px}
+.win .box{flex:1;height:64px;border-radius:10px;background:var(--tag)}
+.win .box:nth-child(2){background:color-mix(in srgb,var(--mint) 25%,transparent)}
+
+section{padding:84px 0}
+.h2{font-size:clamp(1.9rem,4vw,2.6rem);font-weight:800;margin-bottom:12px}
+.sub{color:var(--muted);max-width:58ch;margin-bottom:44px}
+
+.about{display:grid;grid-template-columns:1.2fr .8fr;gap:40px}
+.about p+p{margin-top:16px}
+.facts{display:grid;gap:14px;align-content:start}
+.fact{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.fact b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:1.5rem;color:var(--brand)}
+.fact span{color:var(--muted);font-size:.95rem}
+
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.skill{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
+.skill h3{font-size:1.15rem;margin-bottom:14px}
+.tag{display:inline-block;background:var(--tag);color:var(--tag-ink);padding:5px 12px;border-radius:999px;margin:0 6px 8px 0;font-size:.88rem;font-weight:500}
+
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px;margin-bottom:22px;transition:border-color .2s}
+.proj:hover{border-color:var(--brand)}
+.proj.feat{display:grid;grid-template-columns:1.3fr .7fr;gap:30px;align-items:center;border-width:2px;border-color:var(--brand)}
+.proj h3{font-size:1.6rem;margin-bottom:10px}
+.proj p{color:var(--muted);margin-bottom:16px}
+.links a{font-weight:700;color:var(--brand);margin-right:22px;text-decoration:none}
+.links a:hover{text-decoration:underline}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.pair .proj{margin:0}
+.proj .badge{display:inline-block;background:var(--mint);color:var(--brand-ink);font-size:.8rem;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:14px}
+
+.contact{background:var(--ink);color:var(--bg);border-radius:24px;padding:56px 6%;text-align:center}
+.contact h2{margin-bottom:12px}
+.contact p{opacity:.8;margin-bottom:28px}
+.contact .btn-main{background:var(--bg);color:var(--ink)}
+.contact .btn-ghost{background:transparent;border-color:color-mix(in srgb,var(--bg) 40%,transparent);color:var(--bg)}
+footer{text-align:center;color:var(--muted);padding:34px 6% 44px;font-size:.92rem}
+
+@media(max-width:800px){
+  nav ul li:not(:last-child){display:none}
+  .hero{padding:56px 0}
+  .hero .wrap,.about,.proj.feat,.pair{grid-template-columns:1fr}
+  .win{transform:none}
+  section{padding:60px 0}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<nav>
+  <b>Kouame K.</b>
+  <ul>
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#skills">Compétences</a></li>
+    <li><a href="#projects">Projets</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><button id="theme" aria-label="Changer de thème">◐</button></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="status"><i></i>Disponible pour un premier poste</div>
+      <h1>Je construis des sites web que <span>tout le monde</span> sait utiliser.</h1>
+      <p class="lead">Kouame Kouame, développeur web junior diplômé en Techniques de l’informatique. J’ai déjà conçu, déployé et livré une application utilisée chaque jour en production.</p>
+      <a href="#projects" class="btn btn-main">Voir mes projets</a>
+      <a href="#contact" class="btn btn-ghost">Me contacter</a>
+    </div>
+    <div class="win" aria-hidden="true">
+      <div class="bar"><i></i><i></i><i></i><em>centrealphagranby.ca</em></div>
+      <div class="body">
+        <div class="l b"></div><div class="l" style="width:90%"></div><div class="l" style="width:72%"></div>
+        <div class="row"><div class="box"></div><div class="box"></div><div class="box"></div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap about">
+    <div>
+      <h2 class="h2">À propos</h2>
+      <p>Je suis diplômé du Cégep de Granby. J’aime transformer un besoin réel en solution concrète, avec du code propre et une interface claire.</p>
+      <p>Ma réalisation la plus marquante est le site du Centre Alpha. Je l’ai conçu et déployé, puis j’ai développé un CMS qui permet à des personnes non techniques de gérer elles-mêmes leur contenu.</p>
+    </div>
+    <div class="facts">
+      <div class="fact"><b>En production</b><span>Un site utilisé tous les jours par une équipe</span></div>
+      <div class="fact"><b>Full stack</b><span>De l’interface à la base de données</span></div>
+      <div class="fact"><b>Cégep de Granby</b><span>Techniques de l’informatique</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2 class="h2">Compétences</h2>
+    <p class="sub">Les technologies que j’utilise dans mes projets.</p>
+    <div class="skills">
+      <div class="skill"><h3>Frontend</h3><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">Vue.js</span></div>
+      <div class="skill"><h3>Backend</h3><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">C#</span><span class="tag">.NET MVC</span></div>
+      <div class="skill"><h3>Base de données</h3><span class="tag">MySQL</span><span class="tag">SQL</span></div>
+      <div class="skill"><h3>Outils</h3><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Azure DevOps</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2 class="h2">Projets</h2>
+    <p class="sub">Du site en ligne à l’application d’apprentissage, voici ce que j’ai livré.</p>
+
+    <article class="proj feat">
+      <div>
+        <span class="badge">En ligne</span>
+        <h3>Site web du Centre Alpha</h3>
+        <p>Conception, développement et déploiement d’un site complet utilisé tous les jours par le personnel. Un CMS sur mesure permet de modifier le contenu sans écrire de code.</p>
+        <div><span class="tag">Node.js</span><span class="tag">JavaScript</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">CMS</span></div>
+        <div class="links" style="margin-top:12px">
+          <a href="https://centrealphagranby.ca" target="_blank" rel="noopener">Voir le site</a>
+          <a href="https://github.com/momowilfried28/centre-alpha-site" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+      <div class="win" aria-hidden="true" style="transform:none">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <div class="body"><div class="l b"></div><div class="l"></div><div class="l" style="width:70%"></div></div>
+      </div>
+    </article>
+
+    <div class="pair">
+      <article class="proj">
+        <h3>Modules d’apprentissage informatique</h3>
+        <p>Modules interactifs en C# qui enseignent l’informatique, déployés auprès de vrais utilisateurs.</p>
+        <div><span class="tag">C#</span><span class="tag">.NET</span><span class="tag">Windows</span></div>
+        <div class="links" style="margin-top:12px"><a href="https://github.com/momowilfried28/ApprentissageInformatique" target="_blank" rel="noopener">GitHub</a></div>
+      </article>
+      <article class="proj">
+        <h3>Projet de fin d’études</h3>
+        <p>Application transactionnelle réalisée dans le cadre du programme Techniques de l’informatique.</p>
+        <div><span class="tag">Node.js</span><span class="tag">MVC</span><span class="tag">MySQL</span><span class="tag">JavaScript</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact">
+      <h2 class="h2">Travaillons ensemble</h2>
+      <p>Je cherche un premier poste où apprendre vite et livrer du concret.</p>
+      <a class="btn btn-main" href="mailto:kouame28@gmail.com">kouame28@gmail.com</a>
+      <a class="btn btn-ghost" href="tel:+15794207799">579-420-7799</a>
+      <a class="btn btn-ghost" href="https://github.com/momowilfried28" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/kouame-moise-wilfried-kouame-35b13b228" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Kouame Kouame, développeur web junior</footer>
+
+<script>
+(function(){
+  var b=document.getElementById('theme'),r=document.documentElement;
+  b.addEventListener('click',function(){
+    var dark=(r.dataset.theme==='dark')||(!r.dataset.theme&&matchMedia('(prefers-color-scheme: dark)').matches);
+    r.dataset.theme=dark?'light':'dark';
+  });
+})();
+</script>
+</body>
+</html>
